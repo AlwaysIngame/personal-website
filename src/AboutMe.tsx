@@ -1,8 +1,9 @@
+import PhysicsCanvas from "./PhysicsCanvas";
+
 export default function AboutMe() {
     return(
         <section>
-            im racist<br></br>
-            lol
+            <PhysicsCanvas />
         </section>
     )
 }
