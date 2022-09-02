@@ -17,28 +17,30 @@ function PhysicsCanvas() {
         height: window.innerHeight
       },
     })
+    const initiate = () => { // Box spawning logic
+      const items = [
+        Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 1, window.innerWidth, 2, { isStatic: true }),
+        Bodies.rectangle(window.innerWidth / 2, window.innerHeight / 2, 80, 80),
+      ];
+      Composite.add(engine.world, items);
+    }
 
-    var boxA = Bodies.rectangle(window.innerWidth / 2, window.innerHeight / 2, 80, 80);
-    var ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight - 20, window.innerWidth, 0.1, { isStatic: true });
-
-    Composite.add(engine.world, [boxA, ground]);
-
-    Runner.run(engine)
-    Render.run(render)
+    Runner.run(engine);
+    Render.run(render);
+    initiate();
 
     function handleResize() {
       Composite.clear(engine.world, false)
-      boxA = Bodies.rectangle(window.innerWidth / 2, window.innerHeight / 2, 80, 80);
-      ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight - 20, window.innerWidth, 0.1, { isStatic: true });
       render.bounds.max.x = window.innerWidth;
       render.bounds.max.y = window.innerHeight;
       render.options.width = window.innerWidth;
       render.options.height = window.innerHeight;
       render.canvas.width = window.innerWidth;
       render.canvas.height = window.innerHeight;
-      Composite.add(engine.world, [boxA, ground]);
+      initiate();
     }
     window.addEventListener('resize', handleResize)
+
   }, [])
 
 
